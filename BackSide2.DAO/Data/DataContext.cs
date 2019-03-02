@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using BackSide2.DAO.Entities;
-using BackSide2.DAO.Extentions;
+using Auga.DAO.Entities;
+using Auga.DAO.Extentions;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackSide2.DAO.Data
+namespace Auga.DAO.Data
 {
     public class DataContext : DbContext
     {
@@ -14,7 +14,7 @@ namespace BackSide2.DAO.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Item>().HasOne(l => l.Seller).WithMany(u => u.Items);
         }
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
@@ -25,10 +25,9 @@ namespace BackSide2.DAO.Data
             return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
-        public DbSet<Person> Persons { get; set; }
-        public DbSet<Board> Boards { get; set; }
-        public DbSet<Pin> Pins { get; set; }
-        public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Item> Items { get; set; }
         public DbSet<ChatConnectedUser> ChatConnectedUsers { get; set; }
+        public DbSet<GameWaitingUser> GameWaitingUsers { get; set; }
     }
 }

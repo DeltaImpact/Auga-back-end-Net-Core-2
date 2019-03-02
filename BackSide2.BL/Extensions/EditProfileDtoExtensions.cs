@@ -1,20 +1,17 @@
-﻿using BackSide2.BL.Models.ProfileDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.ProfileDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class EditProfileDtoExtensions
     {
-        public static Person ToPerson(this EditProfileDto model, Person person)
+        public static User ToPerson(this EditProfileDto model, User user)
         {
-            person.Email = model.Email;
-            person.UserName = model.Username;
-            person.FirstName = model.FirstName;
-            person.Surname = model.Surname;
-            person.Gender = model.Gender;
-            person.UpdatedBy = person.Id;
+            user.Email = model.Email;
+            user.UserName = model.Username;
+            user.UpdatedBy = user.Id;
 
-            return person;
+            return user;
         }
     }
 }

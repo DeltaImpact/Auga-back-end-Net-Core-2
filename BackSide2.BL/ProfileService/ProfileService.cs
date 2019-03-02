@@ -1,26 +1,24 @@
-﻿using System;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using BackSide2.BL.Exceptions;
-using BackSide2.BL.Extensions;
-using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.BL.Models.ProfileDto;
-using BackSide2.BL.UsersConnections;
-using BackSide2.DAO.Entities;
-using BackSide2.DAO.Repository;
+using Auga.BL.Exceptions;
+using Auga.BL.Extensions;
+using Auga.BL.Models.AuthorizeDto;
+using Auga.BL.Models.ProfileDto;
+using Auga.BL.UsersConnections;
+using Auga.DAO.Entities;
+using Auga.DAO.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackSide2.BL.ProfileService
+namespace Auga.BL.ProfileService
 {
     public class ProfileService : IProfileService
     {
-        private readonly IRepository<Person> _personService;
+        private readonly IRepository<User> _personService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConnectionMapping _connectionMapping;
         public ProfileService(
-            IRepository<Person> personService, IHttpContextAccessor httpContextAccessor, IConnectionMapping connectionMapping)
+            IRepository<User> personService, IHttpContextAccessor httpContextAccessor, IConnectionMapping connectionMapping)
         {
             _personService = personService;
             _httpContextAccessor = httpContextAccessor;
@@ -82,16 +80,16 @@ namespace BackSide2.BL.ProfileService
             return (await _personService.UpdateAsync(model.ToPerson(userInDb))).ToLoggedDto();
         }
 
-        public async Task ChangePasswordAsync(ChangePasswordDto model)
-        {
-            var userId = long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        //public async Task ChangePasswordAsync(ChangePasswordDto model)
+        //{
+        //    var userId = long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
 
-            var userInDb = await _personService.GetByIdAsync(userId);
-            if (model.OldPassword.GetPassHash() != userInDb.Password)
-                throw new Exception("Wrong password.");
-            userInDb.Password = model.NewPassword.GetPassHash();
-            await _personService.UpdateAsync(userInDb);
-        }
+        //    var userInDb = await _personService.GetByIdAsync(userId);
+        //    if (model.OldPassword.GetPassHash() != userInDb.Password)
+        //        throw new Exception("Wrong password.");
+        //    userInDb.Password = model.NewPassword.GetPassHash();
+        //    await _personService.UpdateAsync(userInDb);
+        //}
     }
 }

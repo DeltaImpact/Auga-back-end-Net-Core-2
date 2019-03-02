@@ -1,86 +1,86 @@
-﻿using System.Collections.Generic;
-using BackSide2.BL.Models.BoardDto;
-using BackSide2.BL.Models.PinDto;
-using BackSide2.DAO.Entities;
+﻿//using System.Collections.Generic;
+//using BackSide2.BL.Models.BoardDto;
+//using BackSide2.BL.Models.PinDto;
+//using BackSide2.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
-{
-    public static class BoardExtensions
-    {
-        public static BoardReturnDto ToBoardReturnDto(this Board board)
-        {
-            return new BoardReturnDto
-            {
-                Id = board.Id,
-                Name = board.Name,
-                Description = board.Description,
-                Img = board.Img,
-                IsPrivate = board.IsPrivate,
-                Modified = board.Modified,
-                Created = board.Created,
-            };
-        }
+//namespace BackSide2.BL.Extensions
+//{
+//    public static class BoardExtensions
+//    {
+//        public static BoardReturnDto ToBoardReturnDto(this Item item)
+//        {
+//            return new BoardReturnDto
+//            {
+//                Id = item.Id,
+//                Name = item.Name,
+//                Description = item.Description,
+//                Img = item.Img,
+//                IsPrivate = item.IsPrivate,
+//                Modified = item.Modified,
+//                Created = item.Created,
+//            };
+//        }
 
-        public static BoardReturnDto ToBoardReturnDto(this Board board, int? pinsCount, bool? isOwner)
-        {
-            return new BoardReturnDto
-            {
-                Id = board.Id,
-                Name = board.Name,
-                Description = board.Description,
-                Img = board.Img,
-                IsPrivate = board.IsPrivate,
-                Modified = board.Modified,
-                Created = board.Created,
-                PinsCount = pinsCount ?? 0,
-                IsOwner = isOwner
-            };
-        }
+//        public static BoardReturnDto ToBoardReturnDto(this Item item, int? pinsCount, bool? isOwner)
+//        {
+//            return new BoardReturnDto
+//            {
+//                Id = item.Id,
+//                Name = item.Name,
+//                Description = item.Description,
+//                Img = item.Img,
+//                IsPrivate = item.IsPrivate,
+//                Modified = item.Modified,
+//                Created = item.Created,
+//                PinsCount = pinsCount ?? 0,
+//                IsOwner = isOwner
+//            };
+//        }
 
-        public static BoardReturnDto ToBoardReturnDto(this Board board, bool? isOwner)
-        {
-            return new BoardReturnDto
-            {
-                Id = board.Id,
-                Name = board.Name,
-                Description = board.Description,
-                Img = board.Img,
-                IsPrivate = board.IsPrivate,
-                Modified = board.Modified,
-                Created = board.Created,
-                IsOwner = isOwner
-            };
-        }
+//        public static BoardReturnDto ToBoardReturnDto(this Item item, bool? isOwner)
+//        {
+//            return new BoardReturnDto
+//            {
+//                Id = item.Id,
+//                Name = item.Name,
+//                Description = item.Description,
+//                Img = item.Img,
+//                IsPrivate = item.IsPrivate,
+//                Modified = item.Modified,
+//                Created = item.Created,
+//                IsOwner = isOwner
+//            };
+//        }
 
-        public static BoardReturnDto ToBoardReturnDto(this Board board, bool? isOwner, bool isLast)
-        {
-            return new BoardReturnDto
-            {
-                Id = board.Id,
-                Name = board.Name,
-                Description = board.Description,
-                Img = board.Img,
-                IsPrivate = board.IsPrivate,
-                Modified = board.Modified,
-                Created = board.Created,
-                IsOwner = isOwner,
-                IsLast = isLast
-            };
-        }
-        public static BoardReturnDto ToBoardReturnDto(this Board board, List<PinReturnDto> pins, bool? isOwner)
-        {
-            return new BoardReturnDto
-            {
-                Id = board.Id,
-                Name = board.Name,
-                Description = board.Description,
-                Img = board.Img,
-                IsPrivate = board.IsPrivate,
-                Modified = board.Modified,
-                Created = board.Created,
-                Pins = pins,
-                IsOwner = isOwner
-            };
-        }
-    }
-}
+//        public static BoardReturnDto ToBoardReturnDto(this Item item, bool? isOwner, bool isLast)
+//        {
+//            return new BoardReturnDto
+//            {
+//                Id = item.Id,
+//                Name = item.Name,
+//                Description = item.Description,
+//                Img = item.Img,
+//                IsPrivate = item.IsPrivate,
+//                Modified = item.Modified,
+//                Created = item.Created,
+//                IsOwner = isOwner,
+//                IsLast = isLast
+//            };
+//        }
+//        public static BoardReturnDto ToBoardReturnDto(this Item item, List<PinReturnDto> pins, bool? isOwner)
+//        {
+//            return new BoardReturnDto
+//            {
+//                Id = item.Id,
+//                Name = item.Name,
+//                Description = item.Description,
+//                Img = item.Img,
+//                IsPrivate = item.IsPrivate,
+//                Modified = item.Modified,
+//                Created = item.Created,
+//                Pins = pins,
+//                IsOwner = isOwner
+//            };
+//        }
+//    }
+//}

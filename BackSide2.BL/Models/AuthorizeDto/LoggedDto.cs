@@ -1,4 +1,4 @@
-﻿namespace BackSide2.BL.Models.AuthorizeDto
+﻿namespace Auga.BL.Models.AuthorizeDto
 {
     public class LoggedDto
     {

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BackSide2.DAO\BackSide2.DAO.csproj" />
+    <ProjectReference Include="..\BackSide2.DAO\Auga.DAO.csproj" />
   </ItemGroup>
 
   <ItemGroup>

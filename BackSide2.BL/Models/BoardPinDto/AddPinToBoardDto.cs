@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackSide2.BL.Models.BoardPinDto
+namespace Auga.BL.Models.BoardPinDto
 {
     public class AddPinToBoardDto
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackSide2.BL.Models.PinDto
+namespace Auga.BL.Models.PinDto
 {
     public class LastPinActionDto
     {

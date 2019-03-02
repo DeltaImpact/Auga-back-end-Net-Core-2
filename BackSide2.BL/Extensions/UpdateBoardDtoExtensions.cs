@@ -1,17 +1,16 @@
-﻿using BackSide2.BL.Models.BoardDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.BoardDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class UpdateBoardDtoExtensions
     {
-        public static Board ToBoard(this UpdateBoardDto model, Board board, long modifiedBy)
+        public static Item ToBoard(this UpdateBoardDto model, Item item, long modifiedBy)
         {
-            board.Name = model.Name;
-            board.Description = model.Description;
-            board.IsPrivate = model.IsPrivate;
-            board.UpdatedBy = modifiedBy;
-            return board;
+            item.Name = model.Name;
+            item.Description = model.Description;
+            item.UpdatedBy = modifiedBy;
+            return item;
         }
     }
 }

@@ -1,22 +1,16 @@
-﻿using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.AuthorizeDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class RegisterDtoExtensions
     {
-        public static Person ToPerson(this RegisterDto model, Person createdBy)
+        public static User ToPerson(this RegisterDto model, User createdBy)
         {
-            var person = new Person
+            var person = new User
             {
                 UserName = model.Username,
                 Email = model.Email,
-                Password = model.Password.GetPassHash(),
-                Role = Role.User,
-                FirstName = model.FirstName,
-                Surname = model.Surname,
-                Gender = null,
-                Language = null,
                 CreatedBy = createdBy.Id,
                 UpdatedBy = null,
             };

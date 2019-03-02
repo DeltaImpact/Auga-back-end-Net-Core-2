@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BackSide2.BL.Models.BoardDto;
+using Auga.BL.Models.BoardDto;
 
-namespace BackSide2.BL.Models.PinDto
+namespace Auga.BL.Models.PinDto
 {
     public class PinReturnDto
     {

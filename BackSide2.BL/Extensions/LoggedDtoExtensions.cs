@@ -1,28 +1,26 @@
-﻿using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.AuthorizeDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class LoggedDtoExtensions
     {
-        public static LoggedDto ToLoggedDto(this Person person, string token)
+        public static LoggedDto ToLoggedDto(this User user, string token)
         {
             return new LoggedDto
             {
-                UserName = person.UserName,
-                Email = person.Email,
-                Role = person.Role.ToString(),
+                UserName = user.UserName,
+                Email = user.Email,
                 Token = token,
             };
         }
 
-        public static LoggedDto ToLoggedDto(this Person person)
+        public static LoggedDto ToLoggedDto(this User user)
         {
             return new LoggedDto
             {
-                UserName = person.UserName,
-                Email = person.Email,
-                Role = person.Role.ToString(),
+                UserName = user.UserName,
+                Email = user.Email,
             };
         }
     }

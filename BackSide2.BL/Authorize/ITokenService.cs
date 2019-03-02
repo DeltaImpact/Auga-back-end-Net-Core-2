@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using BackSide2.BL.Models.AuthorizeDto;
+using Auga.BL.Models.AuthorizeDto;
 
-namespace BackSide2.BL.Authorize
+namespace Auga.BL.Authorize
 {
     public interface ITokenService 
     {

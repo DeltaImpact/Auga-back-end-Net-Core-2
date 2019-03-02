@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
-using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.BL.Models.ProfileDto;
+using Auga.BL.Models.AuthorizeDto;
+using Auga.BL.Models.ProfileDto;
 
-namespace BackSide2.BL.ProfileService
+namespace Auga.BL.ProfileService
 {
     public interface IProfileService
     {
         Task<ProfileReturnDto> GetUserProfileInfo(string userNickname);
         Task<ProfileReturnDto> GetUserProfileInfo();
         Task<LoggedDto> ChangeProfileAsync(EditProfileDto model);
-        Task ChangePasswordAsync(ChangePasswordDto model);
+        //Task ChangePasswordAsync(ChangePasswordDto model);
     }
 }

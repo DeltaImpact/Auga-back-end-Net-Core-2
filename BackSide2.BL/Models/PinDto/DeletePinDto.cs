@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackSide2.BL.Models.PinDto
+namespace Auga.BL.Models.PinDto
 {
     public class DeletePinDto
     {

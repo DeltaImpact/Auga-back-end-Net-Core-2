@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackSide2.BL.Models.ProfileDto
+namespace Auga.BL.Models.ProfileDto
 {
     public class ChangePasswordDto
     {

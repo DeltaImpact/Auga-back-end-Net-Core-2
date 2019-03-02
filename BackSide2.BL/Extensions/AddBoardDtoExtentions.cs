@@ -1,48 +1,48 @@
-﻿using BackSide2.BL.Models.BoardDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.BoardDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class AddBoardDtoExtentions
     {
-        public static Board ToBoard(this AddBoardDto model, long personId)
+        //public static Item ToItem(this AddItemDto model, long personId)
+        //{
+        //    var board = new Item
+        //    {
+        //        Name = model.Name,
+        //        Description = model.Description,
+        //        Img = model.Img,
+        //        IsPrivate = model.IsPrivate,
+        //        CreatedBy = personId,
+        //        User = {Id = personId}
+        //    };
+        //    return board;
+        //}
+
+        public static Item ToItem(this AddItemDto model, long sellerId)
         {
-            var board = new Board
+            var item = new Item
             {
                 Name = model.Name,
                 Description = model.Description,
-                Img = model.Img,
-                IsPrivate = model.IsPrivate,
-                CreatedBy = personId,
-                Person = {Id = personId}
+                Cost = model.Cost,
+                NumberOfParticipants = model.ParticipantsNumber,
+                CreatedBy = sellerId,
+                //Seller = {Id = sellerId}
             };
-            return board;
+            return item;
         }
 
-        public static Board ToBoard(this AddBoardDto model, Person person)
-        {
-            var board = new Board
-            {
-                Name = model.Name,
-                Description = model.Description,
-                Img = model.Img,
-                IsPrivate = model.IsPrivate,
-                CreatedBy = person.Id,
-                Person = person
-            };
-            return board;
-        }
-
-        public static Board ToBoard(this AddBoardDto model)
-        {
-            var board = new Board
-            {
-                Name = model.Name,
-                Description = model.Description,
-                Img = model.Img,
-                IsPrivate = model.IsPrivate,
-            };
-            return board;
-        }
+        //public static Item ToItem(this AddItemDto model)
+        //{
+        //    var board = new Item
+        //    {
+        //        Name = model.Name,
+        //        Description = model.МDescription,
+        //        Img = model.Img,
+        //        IsPrivate = model.IsPrivate,
+        //    };
+        //    return board;
+        //}
     }
 }

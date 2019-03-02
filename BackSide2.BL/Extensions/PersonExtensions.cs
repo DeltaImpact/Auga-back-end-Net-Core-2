@@ -1,42 +1,36 @@
-﻿using System.Threading.Tasks;
-using BackSide2.BL.Models.ProfileDto;
-using BackSide2.DAO.Entities;
+﻿using Auga.BL.Models.ProfileDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.Extensions
+namespace Auga.BL.Extensions
 {
     public static class PersonExtensions
     {
-        public static ProfileReturnDto ToProfileOwnReturnDto(this Person person, bool isOnline)
+        public static ProfileReturnDto ToProfileOwnReturnDto(this User user, bool isOnline)
         {
             return new ProfileReturnDto
             {
-                Id = person.Id,
-                UserName = person.UserName,
-                Email = person.Email,
-                Role = person.Role.ToString(),
-                FirstName = person.FirstName,
-                Surname = person.Surname,
-                Gender = person.Gender,
-                Language = person.Language,
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
                 IsOnline = isOnline,
             };
         }
 
-        public static ProfileReturnDto ToProfileReturnDto(this Person person)
+        public static ProfileReturnDto ToProfileReturnDto(this User user)
         {
             return new ProfileReturnDto
             {
-                Id = person.Id,
-                UserName = person.UserName
+                Id = user.Id,
+                UserName = user.UserName
             };
         }
 
-        public static ProfileReturnDto ToProfileReturnDto(this Person person, bool isOnline)
+        public static ProfileReturnDto ToProfileReturnDto(this User user, bool isOnline)
         {
             return new ProfileReturnDto
             {
-                Id = person.Id,
-                UserName = person.UserName,
+                Id = user.Id,
+                UserName = user.UserName,
                 IsOnline = isOnline,
             };
         }

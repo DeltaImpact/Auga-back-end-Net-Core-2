@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackSide2.BL.Models.ChatDto
+namespace Auga.BL.Models.ChatDto
 {
     public class SendMessageDto
     {

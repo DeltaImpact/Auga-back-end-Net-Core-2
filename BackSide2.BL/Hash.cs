@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace BackSide2.BL
+namespace Auga.BL
 {
     public static class Hash
     {

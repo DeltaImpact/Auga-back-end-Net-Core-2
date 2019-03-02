@@ -1,13 +1,11 @@
-﻿using System.Net.Http.Headers;
-using System.Text;
+﻿using System.Text;
 using System.Threading.Tasks;
-using BackSide2.DAO.Data;
-using BackSide2.Extensions;
+using Auga.DAO.Data;
+using Auga.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace BackSide2
+namespace Auga
 {
     public class Startup
     {
@@ -67,10 +65,7 @@ namespace BackSide2
                                 // Read the token out of the query string
                                 context.Token = accessToken;
                             }
-                            var sad = context.HttpContext.Request.Headers;
-                            var sad1 = context.HttpContext.Request.Headers["Authorization"];
-                            var asd = context.Request.Headers;
-                            var asd1 = context.Request.Headers["Authorization"];
+
                             return Task.CompletedTask;
                         }
                     };
@@ -91,7 +86,6 @@ namespace BackSide2
             services.AddHttpContextAccessor();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly("BackSide2.DAO")));
                     b => b.MigrationsAssembly("Auga.DAO")));
             services.AddSwaggerGen(c =>
             {

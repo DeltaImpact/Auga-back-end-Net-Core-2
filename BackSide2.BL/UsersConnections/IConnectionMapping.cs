@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
-using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.BL.Models.ProfileDto;
+using Auga.DAO.Entities;
 
-namespace BackSide2.BL.UsersConnections
+namespace Auga.BL.UsersConnections
 {
     public interface IConnectionMapping
     {
         Task Add(string connectionId);
         Task Remove(string connectionId);
+        Task<ChatConnectedUser> GetConnectionIdByUserid(long userId);
         Task<bool> IsOnline(long userId);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackSide2.DAO.Entities
+namespace Auga.DAO.Entities
 {
     public class BaseEntity
     {

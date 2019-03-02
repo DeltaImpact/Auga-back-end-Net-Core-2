@@ -1,9 +1,9 @@
 ﻿using System;
+using Auga.DAO.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using BackSide2.DAO.Entities;
 
-namespace BackSide2.DAO.Extentions
+namespace Auga.DAO.Extentions
 {
     public static class ChangeTrackerExtensions
     {

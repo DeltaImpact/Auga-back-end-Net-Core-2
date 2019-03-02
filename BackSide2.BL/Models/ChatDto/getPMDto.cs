@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
-namespace BackSide2.BL.Models.ChatDto
+namespace Auga.BL.Models.ChatDto
 {
     public class GetPmDto
     {

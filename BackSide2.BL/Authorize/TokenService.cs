@@ -4,35 +4,34 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BackSide2.BL.Exceptions;
-using BackSide2.BL.Extensions;
-using BackSide2.BL.Models.AuthorizeDto;
-using BackSide2.DAO.Entities;
-using BackSide2.DAO.Repository;
+using Auga.BL.Extensions;
+using Auga.BL.Models.AuthorizeDto;
+using Auga.DAO.Entities;
+using Auga.DAO.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace BackSide2.BL.Authorize
+namespace Auga.BL.Authorize
 {
     public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
-        private readonly IRepository<Person> _personService;
+        private readonly IRepository<User> _userRepository;
 
         public TokenService(
             IConfiguration configuration,
-            IRepository<Person> personService)
+            IRepository<User> userRepository)
         {
             _configuration = configuration;
-            _personService = personService;
+            _userRepository = userRepository;
         }
 
 
         public async Task<LoggedDto> RegisterAsync(RegisterDto model)
         {
             var person =
-                await (await _personService.GetAllAsync(d => d.Email == model.Email || d.UserName == model.Username))
+                await (await _userRepository.GetAllAsync(d => d.Email == model.Email || d.UserName == model.Username))
                     .FirstOrDefaultAsync();
 
             if (person != null)
@@ -45,12 +44,12 @@ namespace BackSide2.BL.Authorize
                 if (person.Email == model.Email) throw new ArgumentException("Email already taken.");
             }
 
-            var systemUser = await (await _personService.GetAllAsync(d => d.UserName == "system"))
+            var systemUser = await (await _userRepository.GetAllAsync(d => d.UserName == "system"))
                 .FirstOrDefaultAsync();
             if (systemUser == null)
                 throw new ApplicationException("SystemUserNotFound");
 
-            var newUser = await _personService.InsertAsync(model.ToPerson(systemUser));
+            var newUser = await _userRepository.InsertAsync(model.ToPerson(systemUser));
 
             return newUser.ToLoggedDto(GenerateJwtToken(newUser));
         }
@@ -60,8 +59,8 @@ namespace BackSide2.BL.Authorize
         )
         {
             var person =
-                await (await _personService.GetAllAsync(d =>
-                        d.Email == model.Email && d.Password == Hash.GetPassHash(model.Password)))
+                await (await _userRepository.GetAllAsync(d =>
+                        d.Email == model.Email))
                     .FirstOrDefaultAsync();
 
             if (person != null)
@@ -72,16 +71,15 @@ namespace BackSide2.BL.Authorize
 
 
         private string GenerateJwtToken(
-            Person person
+            User user
         )
         {
-            return GenerateJwtToken(person.Email, person.Role.ToString(), person.UserName,
-                person.Id);
+            return GenerateJwtToken(user.Email, user.UserName,
+                user.Id);
         }
 
         private string GenerateJwtToken(
             string email,
-            string role,
             string login,
             long id
         )
@@ -91,7 +89,7 @@ namespace BackSide2.BL.Authorize
                 new Claim(JwtRegisteredClaimNames.Email, email),
                 new Claim(JwtRegisteredClaimNames.UniqueName, login),
                 new Claim(JwtRegisteredClaimNames.Sub, id.ToString()),
-                new Claim("role", role),
+                new Claim(JwtRegisteredClaimNames.NameId, id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 

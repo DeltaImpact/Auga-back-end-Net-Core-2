@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BackSide2.DAO.Migrations
+namespace Auga.DAO.Migrations
 {
     public partial class InitialMigration : Migration
     {

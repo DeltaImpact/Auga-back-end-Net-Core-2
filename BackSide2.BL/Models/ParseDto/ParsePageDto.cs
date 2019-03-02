@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BackSide2.BL.Models.ParseDto
+namespace Auga.BL.Models.ParseDto
 {
     public class ParsePageDto
     {
