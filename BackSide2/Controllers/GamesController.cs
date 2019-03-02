@@ -77,19 +77,10 @@ namespace Auga.Controllers
             var userId = long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var joinedUser = await _matchmakingService.JoinRaffle(id);
 
-            //await _hubContext.Clients.Groups(id.ToString()).SendAsync("userJoined", joinedUser.ToString());
             await _hubContext.Clients.Groups(id.ToString()).SendAsync("userJoined", JsonConvert.SerializeObject(joinedUser));
             await _hubContext.Groups.AddToGroupAsync(
                 (await _connectionMapping.GetConnectionIdByUserid(userId)).ConnectionId,
                 id.ToString());
-
-            //await _hubContext.Clients.All.SendAsync("moves", JsonConvert.SerializeObject(joinedUser));
-            //var gameUsers = await _matchmakingService.GetWaitingRaffle(id);
-            //var usersConnectionsIds = gameUsers
-            //    .Select(async e => (await _connectionMapping.GetConnectionIdByUserid(e.UserId)).ConnectionId).ToList();
-
-            //var asd = usersConnectionsIds.Select(async e => await e);
-            //await usersConnectionsIds.Select(e => (await _hubContext.Clients.Client(e)))
             return Ok(joinedUser);
         }
 
@@ -100,16 +91,16 @@ namespace Auga.Controllers
         [HttpPost("{id}/leave")]
         public async Task<IActionResult> LeaveGame([Required] int id)
         {
-            var joinedUser = await _matchmakingService.LeaveRaffle(id);
+            var leavedUser = await _matchmakingService.LeaveRaffle(id);
             var userId = long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             await _hubContext.Groups.RemoveFromGroupAsync(
                 (await _connectionMapping.GetConnectionIdByUserid(userId)).ConnectionId,
                 id.ToString());
-            await _hubContext.Clients.Groups(id.ToString()).SendAsync("userExited", JsonConvert.SerializeObject(joinedUser));
+            await _hubContext.Clients.Groups(id.ToString()).SendAsync("userExited", JsonConvert.SerializeObject(leavedUser));
 
-            return Ok(joinedUser);
+            return Ok(leavedUser);
 
-            await _hubContext.Clients.All.SendAsync("SendAction", id);
+            //await _hubContext.Clients.All.SendAsync("SendAction", id);
         }
 
 
