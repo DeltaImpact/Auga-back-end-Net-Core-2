@@ -11,6 +11,7 @@ namespace Auga.BL.Extensions
             {
                 UserName = user.UserName,
                 Email = user.Email,
+                Id = user.Id,
                 Token = token,
             };
         }
@@ -21,6 +22,7 @@ namespace Auga.BL.Extensions
             {
                 UserName = user.UserName,
                 Email = user.Email,
+                Id = user.Id,
             };
         }
     }
