@@ -1,7 +1,7 @@
-# linkpins-backend
+# auga-backend
 
-This is back-end for [linkpins-frontend](https://github.com/DeltaImpact/linkpins-frontend) made using .NET Core 2.1, in learning .NET Core 2.1 purposes.
+This is back-end for [auga-frontend-react](https://github.com/DeltaImpact/auga-frontend-react.git) made using .NET Core 2.1.
 
 ### Prerequisites
 
-This project require [linkpins-frontend](https://github.com/DeltaImpact/linkpins-frontend) as the front-end.
+This project require [auga-frontend-react](https://github.com/DeltaImpact/auga-frontend-react.gitfrontend) as the front-end.
