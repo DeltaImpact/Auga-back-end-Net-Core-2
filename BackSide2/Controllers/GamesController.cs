@@ -98,7 +98,7 @@ namespace Auga.Controllers
         /// </summary> 
         [Authorize]
         [HttpPost("{id}/leave")]
-        public async Task<IActionResult> LeaveGame([Required] int id, MessageReceivedContext receivedContext)
+        public async Task<IActionResult> LeaveGame([Required] int id)
         {
             var joinedUser = await _matchmakingService.LeaveRaffle(id);
             var userId = long.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
