@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace BackSide2
 {
@@ -91,6 +92,17 @@ namespace BackSide2
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly("BackSide2.DAO")));
+                    b => b.MigrationsAssembly("Auga.DAO")));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "BRM Swagger overview",
+                    Version = "v1",
+                    Description = "BRM",
+                    TermsOfService = "None",
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -110,6 +122,12 @@ namespace BackSide2
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chatHub"); });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BRM Swagger overview");
+                c.RoutePrefix = string.Empty;
+            });
             app.UseMvc();
         }
     }
