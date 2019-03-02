@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using BackSide2.DAO.Entities;
+using Auga.DAO.Entities;
 
-namespace BackSide2.DAO.Repository
+namespace Auga.DAO.Repository
 {
     public interface IRepository<T> where T : BaseEntity
     {
@@ -19,6 +20,7 @@ namespace BackSide2.DAO.Repository
         Task<T> UpdateAsync(T entity);
 
         Task<T> RemoveAsync(T entity);
+        Task RemoveManyAsync(ICollection<T> entity);
         //Task SaveChangesAsync();
     }
 }

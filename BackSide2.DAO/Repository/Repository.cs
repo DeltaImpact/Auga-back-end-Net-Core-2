@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using BackSide2.DAO.Data;
-using BackSide2.DAO.Entities;
+using Auga.DAO.Data;
+using Auga.DAO.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BackSide2.DAO.Repository
+namespace Auga.DAO.Repository
 {
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
@@ -94,6 +95,15 @@ namespace BackSide2.DAO.Repository
             _entities.Remove(entity);
             await _context.SaveChangesAsync();
             return entity;
+        }
+
+        public async Task RemoveManyAsync(ICollection<T> entity)
+        {
+            if (entity == null)
+                throw new NullReferenceException();
+
+            _entities.RemoveRange(entity);
+            await _context.SaveChangesAsync();
         }
 
         //public async Task SaveChangesAsync()
